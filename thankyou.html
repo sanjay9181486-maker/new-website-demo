@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You for Your Order!</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #e8f8f5; text-align: center; }
+        .container { max-width: 700px; margin: 50px auto; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 5px solid #1abc9c; }
+        h1 { color: #1abc9c; font-size: 2.5em; }
+        h2 { color: #333; margin-top: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .confirmation-box { text-align: left; padding: 15px; border: 1px solid #dcdcdc; border-radius: 5px; margin-top: 20px; background-color: #f9f9f9; }
+        .confirmation-box p { margin: 10px 0; line-height: 1.6; }
+        .continue-btn { background-color: #3498db; color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1em; margin-top: 30px; text-decoration: none; display: inline-block; }
+        .continue-btn:hover { background-color: #2980b9; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎉 Thank You for Your Purchase!</h1>
+        <p style="font-size: 1.2em;" id="greeting-message">Your order has been successfully placed.</p>
+
+        <h2>Order Details</h2>
+        <div class="confirmation-box">
+            <p><strong>Order ID:</strong> <span id="order-id"></span></p>
+            <p><strong>Item Purchased:</strong> <span id="item-name"></span></p>
+            <p><strong>Total Amount:</strong> <span id="item-price"></span></p>
+            <p><strong>Confirmation Email:</strong> A confirmation with tracking details will be sent to the email address provided in the shipping form.</p>
+            <p><strong>Estimated Delivery:</strong> 3-5 business days.</p>
+        </div>
+
+        <a href="index.html" class="continue-btn">Continue Shopping</a>
+    </div>
+
+    <script>
+        // Retrieve all order data
+        const customerName = localStorage.getItem('customer_name');
+        const orderID = localStorage.getItem('order_id');
+        const itemName = localStorage.getItem('order_item');
+        const itemPrice = localStorage.getItem('order_price');
+
+        // Personalize greeting
+        if (customerName) {
+            document.getElementById('greeting-message').textContent = `Hi ${customerName}, your order has been successfully placed.`;
+        }
+
+        // Display order details
+        document.getElementById('order-id').textContent = orderID || 'N/A';
+        document.getElementById('item-name').textContent = itemName || 'N/A';
+        document.getElementById('item-price').textContent = '$' + (itemPrice || '0.00');
+
+        // **Optional: Clear all stored data after a successful order**
+        localStorage.clear();
+    </script>
+
+</body>
+</html>

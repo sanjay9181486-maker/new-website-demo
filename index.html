@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Store - Shop Now</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f9; }
+        .product-card { border: 1px solid #ccc; padding: 15px; margin: 10px; background-color: white; width: 300px; display: inline-block; text-align: center; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #333; }
+        .price { color: #e74c3c; font-size: 1.5em; margin: 10px 0; }
+        button { background-color: #3498db; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; }
+        button:hover { background-color: #2980b9; }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to Our Clothing Store!</h1>
+    <h2>Select an Item</h2>
+
+    <div class="product-card">
+        <h3>Stylish T-Shirt</h3>
+        <p>A comfortable cotton t-shirt for all seasons.</p>
+        <div class="price">$25.00</div>
+        <button onclick="addToCart('T-Shirt', 25.00)">Buy Now</button>
+    </div>
+
+    <div class="product-card">
+        <h3>Premium Jeans</h3>
+        <p>High-quality denim jeans, classic fit.</p>
+        <div class="price">$60.00</div>
+        <button onclick="addToCart('Premium Jeans', 60.00)">Buy Now</button>
+    </div>
+
+    <div class="product-card">
+        <h3>Summer Dress</h3>
+        <p>Light and breezy dress, perfect for a sunny day.</p>
+        <div class="price">$45.00</div>
+        <button onclick="addToCart('Summer Dress', 45.00)">Buy Now</button>
+    </div>
+
+    <script>
+        function addToCart(productName, price) {
+            // 1. Store the selected item and price in the browser's local storage
+            localStorage.setItem('order_item', productName);
+            localStorage.setItem('order_price', price.toFixed(2));
+
+            alert('Added ' + productName + ' to your cart! Proceeding to Checkout.');
+
+            // 2. Redirect to the checkout form
+            window.location.href = 'form.html';
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f9; }
+        .container { max-width: 600px; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #333; border-bottom: 2px solid #ccc; padding-bottom: 10px; }
+        .order-details { background-color: #f7f9f9; padding: 15px; border-radius: 4px; margin-bottom: 20px; border-left: 5px solid #3498db; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .card-group { display: flex; gap: 10px; }
+        .card-group div { flex: 1; }
+        button { background-color: #e74c3c; color: white; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-top: 20px; width: 100%; }
+        button:hover { background-color: #c0392b; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Final Step: Payment</h1>
+
+        <div class="order-details">
+            <h3>Order Summary</h3>
+            <p>Item: <strong id="item-name"></strong></p>
+            <p>Total Amount: <strong id="item-price"></strong></p>
+            <p style="font-size: 0.8em; color: #555;">(All information is simulated for this demonstration)</p>
+        </div>
+
+        <form id="payment-form">
+            <h2>Payment Method (Simulated)</h2>
+            <label for="card-number">Card Number</label>
+            <input type="text" id="card-number" placeholder="XXXX-XXXX-XXXX-XXXX" required pattern="\d{4}-?\d{4}-?\d{4}-?\d{4}">
+
+            <div class="card-group">
+                <div>
+                    <label for="expiry">Expiry Date</label>
+                    <input type="text" id="expiry" placeholder="MM/YY" required pattern="(0[1-9]|1[0-2])\/\d{2}">
+                </div>
+                <div>
+                    <label for="cvc">CVC</label>
+                    <input type="text" id="cvc" placeholder="XXX" required pattern="\d{3,4}">
+                </div>
+            </div>
+            
+            <label for="card-name">Name on Card</label>
+            <input type="text" id="card-name" required>
+            
+            <button type="submit">Complete Secure Payment</button>
+        </form>
+    </div>
+
+    <script>
+        // Display order details
+        document.getElementById('item-name').textContent = localStorage.getItem('order_item') || 'N/A';
+        document.getElementById('item-price').textContent = '$' + (localStorage.getItem('order_price') || '0.00');
+
+        // Payment form submission handler (simulated)
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Stop the default form submission
+            
+            // In a real application, a secure payment gateway would be contacted here.
+            // For this simulation, we just generate a random order ID and redirect.
+            const orderID = 'ORD-' + Math.floor(Math.random() * 900000 + 100000);
+            localStorage.setItem('order_id', orderID);
+
+            alert('Payment Successful! Your Order ID is: ' + orderID);
+            
+            // Redirect to the thank you page
+            window.location.href = 'thankyou.html';
+        });
+    </script>
+
+</body>
+</html>
